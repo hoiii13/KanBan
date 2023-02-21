@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import '../components/tabs.dart';
+import '../pages/login/login.dart';
 
-final routes = {'/': (context) => const Tabs()};
+final routes = {
+  '/tab': (context) => const Tabs(),
+  '/': (context) => const LoginPage()
+};
 
 var onGenerateRoute = (RouteSettings settings) {
   final String? name = settings.name;
