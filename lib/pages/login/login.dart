@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kanban/components/tabs.dart';
+import 'package:kanban/layout/tabs.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

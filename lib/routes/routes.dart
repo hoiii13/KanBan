@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import '../components/tabs.dart';
+import 'package:kanban/pages/project/myProject.dart';
+import '../layout/tabs.dart';
 import '../pages/login/login.dart';
 
 final routes = {
-  '/tab': (context) => const Tabs(),
-  '/': (context) => const LoginPage()
+  '/': (context) => const Tabs(),
+  '/login': (context) => const LoginPage(),
+  '/project': (context) => const MyProjectPage()
 };
 
 var onGenerateRoute = (RouteSettings settings) {

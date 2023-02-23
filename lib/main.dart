@@ -13,10 +13,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Kanban',
       theme: ThemeData(
-        primarySwatch: createMaterialColor(Colors.white),
-      ),
+          primarySwatch: createMaterialColor(Colors.white),
+          backgroundColor: Colors.red),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       onGenerateRoute: onGenerateRoute,

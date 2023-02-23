@@ -8,6 +8,8 @@ class MyTaskPage extends StatefulWidget {
 }
 
 class _MyTaskPageState extends State<MyTaskPage> {
+/* final data = [{}] */
+
   @override
   Widget build(BuildContext context) {
     return Container();
