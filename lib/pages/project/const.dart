@@ -56,7 +56,7 @@ final taskColumns = [
   {"name": "预备", "status": false},
   {"name": "开发", "status": false},
   {"name": "测试", "status": false},
-  {"name": "完成", "status": false}
+  {"name": "完成", "status": false},
 ];
 final taskColumnList = {
   "预备": [
@@ -64,18 +64,21 @@ final taskColumnList = {
       'title': "任务一",
       'start_time': '2023-03-02 15:10',
       'end_time': '2023-03-03 18:00',
+      'color': 'red',
       'actor': 'Mike'
     },
     {
       'title': "任务二",
-      'start_time': '2023-03-12 19:10',
-      'end_time': '2023-03-13 18:00',
+      'start_time': '2023-02-12 19:10',
+      'end_time': '2023-02-13 18:00',
+      'color': 'blue',
       'actor': 'Lisa'
     },
     {
       'title': "广告排期",
       'start_time': '2023-03-06 15:10',
       'end_time': '2023-03-08 18:00',
+      'color': 'yellow',
       'actor': 'Lucy'
     },
   ],
@@ -84,12 +87,14 @@ final taskColumnList = {
       'title': "广告排期",
       'start_time': '2023-02-06 15:10',
       'end_time': '2023-03-08 18:00',
-      'actor': 'Bob'
+      'color': 'red',
+      'actor': 'Mike'
     },
     {
       'title': "资源排期",
       'start_time': '2023-02-06 10:10',
       'end_time': '2023-02-26 18:00',
+      'color': 'green',
       'actor': 'Lily'
     },
   ],
@@ -98,18 +103,21 @@ final taskColumnList = {
       'title': "岗位详情页",
       'start_time': '2023-02-06 10:10',
       'end_time': '2023-02-26 18:00',
+      'color': 'pink',
       'actor': 'Lucky'
     },
     {
       'title': "公司详情页",
       'start_time': '2023-02-06 10:10',
       'end_time': '2023-02-26 18:00',
+      'color': 'pink',
       'actor': 'Lucky'
     },
     {
       'title': "移动端调整",
       'start_time': '2023-02-06 10:10',
-      'end_time': '2023-02-26 18:00',
+      'end_time': '2023-02-22 18:00',
+      'color': 'blue',
       'actor': 'Lisa'
     },
   ],

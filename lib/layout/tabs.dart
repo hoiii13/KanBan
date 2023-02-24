@@ -42,6 +42,11 @@ class _TabsState extends State<Tabs> {
       appBar: AppBar(
         title: Text(title[currentIndex],
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+        actions: [
+          currentIndex == 2
+              ? IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded))
+              : SizedBox()
+        ],
         centerTitle: true,
         elevation: 0.3,
       ),
