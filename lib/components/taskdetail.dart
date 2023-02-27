@@ -17,6 +17,16 @@ class _TaskDetailPageState extends State<TaskDetailPage> {
     super.initState();
   }
 
+  List<Widget> othersList = [];
+  List<Widget> getOtherList() {
+    othersList.clear();
+    for (int i = 0; i < otherAssignees.length; i++) {
+      final name = otherAssignees[i];
+      othersList.add(avatarOthers(name, i));
+    }
+    return othersList;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,7 +103,7 @@ class _TaskDetailPageState extends State<TaskDetailPage> {
                       ],
                     ),
                     Container(
-                      margin: const EdgeInsets.fromLTRB(15, 10, 0, 0),
+                      margin: const EdgeInsets.fromLTRB(15, 10, 15, 0),
                       child: Row(
                         children: [
                           const Icon(
@@ -116,7 +126,7 @@ class _TaskDetailPageState extends State<TaskDetailPage> {
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.fromLTRB(15, 15, 0, 0),
+                      margin: const EdgeInsets.fromLTRB(15, 15, 15, 0),
                       child: Row(
                         children: [
                           const Icon(
@@ -145,7 +155,6 @@ class _TaskDetailPageState extends State<TaskDetailPage> {
               padding: EdgeInsets.all(20),
               color: Colors.white,
               width: double.infinity,
-              height: 200,
               child: Column(
                 children: [
                   Row(
@@ -163,10 +172,82 @@ class _TaskDetailPageState extends State<TaskDetailPage> {
                       )
                     ],
                   ),
+                  Container(
+                      margin: EdgeInsets.fromLTRB(15, 10, 15, 0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "栏目：",
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          Text(
+                            '${detailInfo["status"]}',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 80),
+                            child: Text(
+                              "指派给：",
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ),
+                          Text(
+                            "${detailInfo["actor"]}",
+                            style: TextStyle(fontSize: 16),
+                          )
+                        ],
+                      )),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(15, 10, 15, 0),
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      'Other Assignees:',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                  Container(
+                      height: 40,
+                      width: double.infinity,
+                      margin: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                      child: Wrap(
+                        spacing: 5,
+                        runSpacing: 5,
+                        children: getOtherList(),
+                      )),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 40, vertical: 50),
+                    child: ElevatedButton(
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            minimumSize: MaterialStateProperty.all(
+                                const Size(double.infinity, 50)),
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.black)),
+                        onPressed: () {},
+                        child: Text(
+                          "进入评论区",
+                          style: TextStyle(color: Colors.white),
+                        )),
+                  )
                 ],
               ),
-            )
+            ),
           ],
         ));
   }
+}
+
+Widget avatarOthers(String name, int num) {
+  return CircleAvatar(
+    radius: 14,
+    backgroundColor: Colors.primaries[num],
+    child: Text(
+      name.substring(0, 1),
+      style: const TextStyle(fontSize: 14),
+    ),
+  );
 }

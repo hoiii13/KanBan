@@ -8,3 +8,18 @@ final detailInfo = {
   "actor": 'Lisa',
   "other": ["Mike", "Lily"]
 };
+const otherAssignees = [
+  "Mike",
+  "Lucy",
+  "Lucy",
+  "Lucy",
+  "Lucy",
+  "Lucy",
+  "Lucy",
+  "Lucy",
+  "Lucy",
+  "Lucy",
+  "Lucy",
+  "Lucy",
+  "Lucy"
+];

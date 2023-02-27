@@ -132,10 +132,26 @@ class _TasksPageState extends State<TasksPage>
                             taskInfo: taskColumnList[name]![index])));
                   },
                   child: Card(
+                      /* elevation: 20,
+                      shadowColor: Colors.black, */
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                       child: Container(
                           padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                                color: Colors.black,
+                                style: BorderStyle.solid,
+                                width: 2.0),
+                            /* boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black12.withOpacity(0.5),
+                                    offset: Offset(10, 20),
+                                    blurRadius: 10,
+                                    spreadRadius: 0.0)
+                              ] */
+                          ),
                           child: Column(
                             children: [
                               Container(
