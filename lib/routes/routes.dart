@@ -6,7 +6,7 @@ import '../pages/login/login.dart';
 final routes = {
   '/': (context) => const Tabs(),
   '/login': (context) => const LoginPage(),
-  '/project': (context) => const MyProjectPage()
+  '/project': (context) => const MyProjectPage(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {
