@@ -4,8 +4,8 @@ import '../layout/tabs.dart';
 import '../pages/login/login.dart';
 
 final routes = {
-  '/': (context) => const Tabs(),
-  '/login': (context) => const LoginPage(),
+  '/tab': (context) => const Tabs(),
+  '/': (context) => const LoginPage(),
   '/project': (context) => const MyProjectPage(),
 };
 

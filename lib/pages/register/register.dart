@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:kanban/layout/tabs.dart';
-import 'package:kanban/pages/register/register.dart';
+import 'package:kanban/pages/login/login.dart';
 
 import '../../components/textFeild.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final nameController = TextEditingController();
-  final passwordController = TextEditingController();
+  final pwdController = TextEditingController();
+  final confirmController = TextEditingController();
 
   FocusNode nameFocus = FocusNode();
-  FocusNode passwordFocus = FocusNode();
+  FocusNode pwdFocus = FocusNode();
+  FocusNode confirmFocus = FocusNode();
 
   var isNameFocus = false;
-  var isPasswordFocus = false;
+  var isPwdFocus = false;
+  var isConfirmFocus = false;
 
   bool isShowPwd = false;
+  bool isConfirmPwd = false;
 
   @override
   void initState() {
@@ -35,52 +38,68 @@ class _LoginPageState extends State<LoginPage> {
         }
       });
     });
-
-    passwordFocus.addListener(() {
+    pwdFocus.addListener(() {
       setState(() {
-        if (passwordFocus.hasFocus) {
-          isPasswordFocus = true;
+        if (pwdFocus.hasFocus) {
+          isPwdFocus = true;
         } else {
-          isPasswordFocus = false;
+          isPwdFocus = false;
+        }
+      });
+    });
+    confirmFocus.addListener(() {
+      setState(() {
+        if (confirmFocus.hasFocus) {
+          isConfirmFocus = true;
+        } else {
+          isConfirmFocus = false;
         }
       });
     });
   }
 
   //用于遮挡密码
-  void _passwordIcon() {
+  bool _passwordIcon() {
     setState(() {
       isShowPwd = !isShowPwd;
+    });
+    return isShowPwd;
+  }
+
+  void _confirmPwdIcon() {
+    setState(() {
+      isConfirmPwd = !isConfirmPwd;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-          child: Container(
-        margin: const EdgeInsets.fromLTRB(30, 160, 30, 0),
+        body: SingleChildScrollView(
+      child: Container(
+        margin: const EdgeInsets.fromLTRB(30, 130, 30, 0),
         child: Column(
           children: [
             Container(
               alignment: const Alignment(-1, -1),
               child: const Text(
-                "Login to your",
+                'Sign up',
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800),
               ),
             ),
             Container(
-              alignment: const Alignment(-1, -1),
+              margin: const EdgeInsets.fromLTRB(0, 20, 0, 10),
               child: const Text(
-                "Account",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800),
-              ),
+                  'You have chance to have create new account. If you really want to.',
+                  style: TextStyle(fontSize: 13)),
             ),
             buildTextField(nameController, nameFocus, isNameFocus, '用户名'),
-            buildPwdTextField(passwordController, passwordFocus,
-                isPasswordFocus, '密码', isShowPwd),
+            buildPwdTextField(
+                pwdController, pwdFocus, isPwdFocus, '密码', isShowPwd, 0),
+            buildPwdTextField(confirmController, confirmFocus, isConfirmFocus,
+                '确认密码', isConfirmPwd, 1),
             Container(
-              margin: EdgeInsets.only(top: 30),
+              margin: const EdgeInsets.only(top: 30),
               child: ElevatedButton(
                 style: ButtonStyle(
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
@@ -88,10 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                     minimumSize: MaterialStateProperty.all(
                         const Size(double.infinity, 60)),
                     backgroundColor: MaterialStateProperty.all(Colors.black)),
-                onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => Tabs()));
-                },
+                onPressed: () {},
                 child: const Text(
                   '确定',
                   style: TextStyle(color: Colors.white, fontSize: 15),
@@ -99,40 +115,36 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Container(
-                margin: const EdgeInsets.only(top: 5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      '还没有账号？',
+              margin: const EdgeInsets.only(top: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('已经有账号？',
                       style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-                    ),
-                    TextButton(
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                  TextButton(
                       onPressed: () {
                         Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    RegisterPage()),
+                            MaterialPageRoute(builder: (_) => LoginPage()),
                             (route) => false);
                       },
                       child: const Text(
-                        '新注册一个',
+                        '去登录',
                         style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: Colors.orange),
-                      ),
-                    )
-                  ],
-                ))
+                      ))
+                ],
+              ),
+            )
           ],
         ),
-      )),
-    );
+      ),
+    ));
   }
 
-  buildPwdTextField(controller, focus, isFocus, text, isShow) {
+  buildPwdTextField(controller, focus, isFocus, text, isShow, status) {
     return Container(
       margin: const EdgeInsets.only(top: 20),
       child: TextField(
@@ -179,7 +191,11 @@ class _LoginPageState extends State<LoginPage> {
                         padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
                         onPressed: () {
                           setState(() {
-                            _passwordIcon();
+                            if (status == 0) {
+                              _passwordIcon();
+                            } else {
+                              _confirmPwdIcon();
+                            }
                           });
                         },
                         icon: Icon(
